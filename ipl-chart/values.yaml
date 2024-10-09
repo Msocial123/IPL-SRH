@@ -1,0 +1,10 @@
+replicas: 2
+image:
+  repository: daviddocker526/ipl
+  tag: latest
+service:
+  type: LoadBalancer
+  port: 80
+labels:
+  app: ipl-2024
+
