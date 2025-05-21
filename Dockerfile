@@ -9,4 +9,4 @@ RUN apt-get install apache2 -y
 #Copy the code from local to inside the docker images
 COPY . /var/www/html
 #Start Apache start Server
-ENTRYPOINT apachectl -D FOREGROUND
+CMD ["apachectl", "-D", "FOREGROUND"]
