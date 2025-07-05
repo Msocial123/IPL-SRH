@@ -1,0 +1,42 @@
+---
+- name: Deploy IPL-SRH static site on Apache
+  hosts: webservers
+  become: yes
+  remote_user: ansible
+  connection: ssh
+
+  tasks:
+    - name: Install Apache (httpd)
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+
+    - name: Start and enable Apache service
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Copy index.html
+      ansible.builtin.copy:
+        src: /home/ansible/IPL-SRH/index.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Copy CSS files
+      ansible.builtin.copy:
+        src: /home/ansible/IPL-SRH/ipl_src_css/
+        dest: /var/www/html/ipl_src_css/
+        owner: root
+        group: root
+        mode: 0755
+
+    - name: Copy images
+      ansible.builtin.copy:
+        src: /home/ansible/IPL-SRH/images/
+        dest: /var/www/html/images/
+        owner: root
+        group: root
+        mode: 0755
