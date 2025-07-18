@@ -1,4 +1,4 @@
-replicas: 2
+replicas: 10
 image:
   repository: daviddocker526/ipl
   tag: latest
